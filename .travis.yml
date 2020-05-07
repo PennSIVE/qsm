@@ -25,5 +25,5 @@ deploy:
 before_install:
   - docker build -t ${TRAVIS_REPO_SLUG,,}:${TRAVIS_CPU_ARCH} .
 
-# script:
-#   - docker run ${TRAVIS_REPO_SLUG,,}:${TRAVIS_CPU_ARCH}
+script:
+  - docker run ${TRAVIS_REPO_SLUG,,}:${TRAVIS_CPU_ARCH} -h
