@@ -27,7 +27,7 @@ env:
 deploy:
   # https://docs.travis-ci.com/user/docker/#pushing-a-docker-image-to-a-registry
   provider: script
-  script: export DOCKER_USERNAME=$DOCKER_USERNAME && DOCKER_PASSWORD=$DOCKER_PASSWORD && bash docker_push.sh
+  script: bash docker_push.sh
   on:
     branch: master
 
