@@ -19,14 +19,14 @@ arch:
 # https://stackoverflow.com/questions/23380369/defining-secure-environment-variables-for-multiple-repositories-in-a-single-tra
 env:
   global:
-    # generated with `travis encrypt DOCKER_USERNAME=[your username] -r [owner/repository]
+    # generated with `travis encrypt DOCKER_USERNAME=[your username] -r [owner/repository]`
     - secure: "PW1C8d3P5Sm+9JegM7tvscPNjDpKEFsfAaR32Sy/Tice0xkWlO4VeIHIm8g39kRjCjFxW8fVtW4IV6fhtDYUet7sI2eDf38Fv9gxT0rEHsBHoNcIAN4sceobro95ltMWrtejXgbcfnCmkWRrvZPy2EJ9A75P/akOpVLueyJ9mRlyj6HMAVfOx10HyBsdtG2E0ej/znzBwuMm1nO4i49nI9TT4Ww0HMOULUhBFA/8XgSaergaHSyWYxyEcPr6+ZsXouYGrHFlZ73V1j0HbbLQqP9eBq8z5pdZWYGdQ1q1tzA5Db4eMIXAP622pTlTM/zjQSygqDlLka8y0lNCb5lpdnhUEqOBs9xDNSioDCYGGwP8G53SJPla2DYCTLbimCMVLtn84IE9i+TG+8M9CksiaaOap9xeaNcMDzH9yhdouYPE30KUvvOUndX2EbKPKl5M25CjTraffJlkxggDytzhFR6OuvU8tjz6hy7VxHQRtJ8GKT4loq/4dfaXYjchYB0obBb+dNOlnrvGrq+2j9Qzo8i5Wu2lo5t/zNtPDkmKp9Qtjx3NCMC/0D7vCFg2xfjJ/5XMzp8zYpyeUGUofYfQj99Oy+19+gswmBXJ4R4bmWoi22J8t1XOIfJw4KeBuxm2fjkUNF4wC9IVFAkk1sQQ1XXg4cQ/IVrWhRHHOGpuNVQ="
     - secure: "hWvIDxkqYOKVrEDr0PbFUdlmhalZK0XFxeTRc3jUUyNbKoIJo7Un/RiNN2UnBGdm+Id7klC/ADpa+vLhwRKHV/5yS7wqIcRffbaL1bsyTYQ1c58UlezKLan/lv7Hyyb7vFeGWtJIKnV7OTzmV8gzjg7D7ZK+iyVKJBj3ZyEbctYPrDUDI2thPlOtL/mhQAUukcfp2kUPrNiUmqQVD0gHM5rTb/ryc1k/D3tMAX87QO9/8U8Sc/BUCMlTw02nW8ap4BnTslbL23oIGFKbCcKZgDMLpRsAuYvzSkzu9xDTx+0QYMODo+ihQWG1xwwFjQf2ZQRdTIIkTDN3K/mX2mLXC9VmZ4lxe9lfID6w35ygBenXtNOUpqjpANhzkvuiU+/aN1ta1NdEaUhy/LjUjhv7sqMlR//paSb4S+jiMxDf0xYT9KrgI+zNncUCF+4nxCsy+PEhScu5j4oN7+9C5BQ7kOE+WahY/OjrQvJetppf91N9tZguyviiUSgh55zZzyA8BLDn0Wetw7sd/IFxK0YuhJ5LTO5hHjnBQDWDPIAL2au077jkKdthsI/ftX4DoR5BQSnL7AlKNWQpxaJ4D12lu2SyxPlo9XLOAs2KznbkCzF6M28QXrH42FOZw0XbKQbKiaRV792bMydDq0RNtlbn6hsuJvVs7my5YorD0O0TuE8="
 
 deploy:
   # https://docs.travis-ci.com/user/docker/#pushing-a-docker-image-to-a-registry
   provider: script
-  script: bash docker_push.sh
+  script: export DOCKER_USERNAME=$DOCKER_USERNAME && DOCKER_PASSWORD=$DOCKER_PASSWORD && bash docker_push.sh
   on:
     branch: master
 
