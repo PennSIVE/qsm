@@ -31,8 +31,12 @@ deploy:
   on:
     branch: master
 
+# https://github.com/multiarch/debian-debootstrap
 before_install:
+  - sed -i "1s/.*/FROM multiarch\/debian-debootstrap:${TRAVIS_CPU_ARCH}-buster/" Dockerfile
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - docker build -t ${TRAVIS_REPO_SLUG,,}:${TRAVIS_CPU_ARCH} .
 
 script:
+  - docker run --entrypoint="uname" ${TRAVIS_REPO_SLUG,,}:${TRAVIS_CPU_ARCH} -a
   - docker run ${TRAVIS_REPO_SLUG,,}:${TRAVIS_CPU_ARCH} -h
